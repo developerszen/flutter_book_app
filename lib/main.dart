@@ -1,3 +1,4 @@
+import 'package:book_app/auth/ui/screens/login_screen.dart';
 import 'package:book_app/inicio/ui/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +12,12 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'Aplicación de Libros',
-            home: HomeScreen(),
+            // home: HomeScreen(),
+            initialRoute: '/login',
+            routes: {
+                '/login'        : (BuildContext context) => LoginScreen(),
+                '/home'         : (BuildContext context) => HomeScreen(),
+            },
         );
     }
 }

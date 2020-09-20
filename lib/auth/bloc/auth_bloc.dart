@@ -40,4 +40,18 @@ class AuthBloc {
             return false;
         }
     }
+
+    Future<String> getAccessToken() async {
+        try {
+            final res = await session.get();
+            if (res != null) {
+                final accessToken = res['access_token'] as String;
+                return accessToken;
+            }
+            return null;
+        } catch (e) {
+            print(e);
+            return null;
+        }
+    }
 }

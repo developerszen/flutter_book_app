@@ -14,31 +14,34 @@ class CategoryCardWidget extends StatelessWidget {
 
     @override
     Widget build(BuildContext context) {
-        return Container(
-            margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
-            height: 150,
-            width: 350,
-            alignment: Alignment.center,
-            child: Text(
-                categoryName,
-                style: TextStyle(
-                    fontSize: 40,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.white,
-                    shadows: <Shadow>[
-                        Shadow(
-                            offset: Offset(1, 1),
-                            blurRadius: 10,
-                            color: Colors.black
-                        )
-                    ]
+        return GestureDetector(
+            onTap: onTap,
+            child: Container(
+                margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                height: 150,
+                width: 350,
+                alignment: Alignment.center,
+                child: Text(
+                    categoryName,
+                    style: TextStyle(
+                        fontSize: 40,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white,
+                        shadows: <Shadow>[
+                            Shadow(
+                                offset: Offset(1, 1),
+                                blurRadius: 10,
+                                color: Colors.black
+                            )
+                        ]
+                    ),
                 ),
-            ),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(20)),
-                image: DecorationImage(
-                    image: NetworkImage(urlImage),
-                    fit: BoxFit.cover
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                    image: DecorationImage(
+                        image: NetworkImage(urlImage),
+                        fit: BoxFit.cover
+                    ),
                 ),
             ),
         );

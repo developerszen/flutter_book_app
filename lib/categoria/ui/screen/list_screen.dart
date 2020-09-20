@@ -1,3 +1,5 @@
+import 'package:book_app/categoria/bloc/category_bloc.dart';
+import 'package:book_app/categoria/model/category_model.dart';
 import 'package:book_app/categoria/ui/widgets/category_card_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -15,15 +17,39 @@ class _CategoriesListScreenState extends State<CategoriesListScreen> {
             floatingActionButton: FloatingActionButton(
                 child: Icon(Icons.add),
                 backgroundColor: Color(0xFFFF6B03),
-                onPressed: (){}
-            ),
-            body: ListView.builder(
-                itemCount: 10,
-                itemBuilder: (context, i) {
-                    return CategoryCardWidget(urlImage: 'https://picsum.photos/350/200?random=$i');
+                onPressed: (){
+                    Navigator.pushNamed(context, '/category/create');
                 }
             ),
+            body: createList()
         );
         
+    }
+
+    Widget createList() {
+        return FutureBuilder(
+            future: CategoryBloc().listCategories(),
+            builder: (BuildContext context, AsyncSnapshot<List<CategoryModel>> snapshot){
+                if (snapshot.hasData) {
+                    final data = snapshot.data;
+                    return ListView.builder(
+                        itemCount: data.length,
+                        itemBuilder: (context, i){
+                            return CategoryCardWidget(
+                                urlImage: 'https://picsum.photos/350/200?random=$i',
+                                categoryName: data[i].name,
+                                onTap: (){
+                                    Navigator.pushNamed(context, '/category/detail', arguments: data[i]);
+                                },
+                            );
+                        }
+                    );
+                } else {
+                    return Center(
+                        child: CircularProgressIndicator(),
+                    );
+                }
+            }
+        );
     }
 }

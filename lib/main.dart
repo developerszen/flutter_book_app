@@ -1,4 +1,6 @@
 import 'package:book_app/auth/ui/screens/login_screen.dart';
+import 'package:book_app/categoria/ui/screen/create_screen.dart';
+import 'package:book_app/categoria/ui/screen/detail_screen.dart';
 import 'package:book_app/inicio/ui/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -15,8 +17,10 @@ class MyApp extends StatelessWidget {
             // home: HomeScreen(),
             initialRoute: '/login',
             routes: {
-                '/login'        : (BuildContext context) => LoginScreen(),
-                '/home'         : (BuildContext context) => HomeScreen(),
+                '/login'            : (BuildContext context) => LoginScreen(),
+                '/home'             : (BuildContext context) => HomeScreen(),
+                '/category/detail'  : (BuildContext context) => CategoryDetailScreen(),
+                '/category/create'  : (BuildContext context) => CategoryCreateScreen(),
             },
         );
     }
